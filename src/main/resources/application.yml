@@ -7,7 +7,6 @@ server:
     include-message: always
     include-stacktrace: never
     
-    
  #servlet:
   #context-path: /api/v0
 
