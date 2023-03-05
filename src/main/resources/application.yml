@@ -13,7 +13,7 @@ server:
 
 spring:
  datasource:
-   url: jdbc:postgresql://localhost:5432/visionrent_db
+   url: jdbc:postgresql://localhost:5432/visionrent_db_day
    username: postgres
    password: changeme
    driver-class-name: org.postgresql.Driver
