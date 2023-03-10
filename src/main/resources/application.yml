@@ -16,6 +16,7 @@ spring:
    username: mvc_user
    password: mvc_password
    driver-class-name: org.postgresql.Driver
+
    
  #main:
   #allow-circular-references: true
