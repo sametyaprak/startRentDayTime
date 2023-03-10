@@ -8,6 +8,7 @@ public class VisionrentApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(VisionrentApplication.class, args);
+		//codes from me
 	}
 
 }
