@@ -7,6 +7,7 @@ import com.visionrent.dto.response.ResponseMessage;
 import com.visionrent.dto.response.VRResponse;
 import com.visionrent.mapper.ContactMessageMapper;
 import com.visionrent.service.ContactMessageService;
+import lombok.AllArgsConstructor;
 import org.apache.poi.ss.formula.functions.T;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/contactmessage")
+@AllArgsConstructor
 public class ContactMessageController {
 
     private ContactMessageMapper contactMessageMapper;
