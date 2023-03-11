@@ -1,10 +1,10 @@
 package com.visionrent.mapper;
 
 
-import com.visionrent.domain.ContactMessage;
-import com.visionrent.dto.request.ContactMessageRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import com.visionrent.domain.ContactMessage;
+import com.visionrent.dto.request.ContactMessageRequest;
 
 @Mapper(componentModel = "spring")
 public interface ContactMessageMapper {

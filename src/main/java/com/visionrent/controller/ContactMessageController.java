@@ -25,9 +25,12 @@ public class ContactMessageController {
 
     private ContactMessageService contactMessageService;
 
+
     @PostMapping("/visitors")
     public ResponseEntity<VRResponse> createMessage(@Valid @RequestBody ContactMessageRequest contactMessageRequest){
-
+        /*
+         * Design PROBLEM -> this kind of service layer implementations should be done in service layer.
+         */
         ContactMessage contactMessage = contactMessageMapper.contactMessageRequestToContactMessage(contactMessageRequest);
 
         contactMessageService.saveMessage(contactMessage);
