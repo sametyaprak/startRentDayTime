@@ -27,12 +27,14 @@ public class ContactMessageService {
     }
 
     public ContactMessage getContactMessage(Long id){
-        ContactMessage contactMessage = contactMessageRepository.findById(id).orElseThrow(()->
-                new ResourceNotFoundException(ErrorMessage.RESOURCE_NOT_FOUND_MESSAGE,id));
+        return contactMessageRepository.findById(id).orElseThrow(()->
+                new ResourceNotFoundException(String.format(ErrorMessage.RESOURCE_NOT_FOUND_MESSAGE,id)));
     }
 
     public void deleteContactMessage(Long id){
-        ContactMessage contactMessage =
+        //first of all we need to find contactMessage by id information
+        ContactMessage contactMessage = getContactMessage(id);
+        contactMessageRepository.delete(contactMessage);
     }
 
 

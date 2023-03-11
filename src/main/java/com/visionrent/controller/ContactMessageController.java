@@ -48,13 +48,16 @@ public class ContactMessageController {
         List<ContactMessage>contactMessageList = contactMessageService.getAll();
         List<ContactMessageDTO>contactMessageDTOList = contactMessageMapper.map(contactMessageList);
         return ResponseEntity.ok(contactMessageDTOList);
+        //bad implementation of code in context of readability.
+        //return ResponseEntity.ok(contactMessageMapper.map(contactMessageService.getAll()));
     }
 
     @DeleteMapping("{id}")
     public ResponseEntity<VRResponse> deleteContactMessage(@PathVariable Long id){
 
+        VRResponse response = new VRResponse(ResponseMessage.CONTACT_MESSAGE_DELETE_RESPONSE,true);
 
-        return null;
+        return ResponseEntity.ok(response);
     }
 
 
