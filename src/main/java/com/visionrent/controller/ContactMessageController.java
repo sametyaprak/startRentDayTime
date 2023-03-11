@@ -2,6 +2,7 @@ package com.visionrent.controller;
 
 
 import com.visionrent.domain.ContactMessage;
+import com.visionrent.dto.ContactMessageDTO;
 import com.visionrent.dto.request.ContactMessageRequest;
 import com.visionrent.dto.response.ResponseMessage;
 import com.visionrent.dto.response.VRResponse;
@@ -11,10 +12,7 @@ import lombok.AllArgsConstructor;
 import org.apache.poi.ss.formula.functions.T;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -42,11 +40,13 @@ public class ContactMessageController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
+    //TODO please read about SQL-INJECTION
 
-    public ResponseEntity<List<ContactMessage>>getAllContactMessage(){
-
-
-        return null;
+    @GetMapping
+    public ResponseEntity<List<ContactMessageDTO>>getAllContactMessage(){
+        List<ContactMessage>contactMessageList = contactMessageService.getAll();
+        List<ContactMessageDTO>contactMessageDTOList = contactMessageMapper.map(contactMessageList);
+        return ResponseEntity.ok(contactMessageDTOList);
     }
 
 

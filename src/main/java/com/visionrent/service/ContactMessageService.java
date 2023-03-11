@@ -5,6 +5,8 @@ import com.visionrent.repository.ContactMessageRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class ContactMessageService {
@@ -16,6 +18,10 @@ public class ContactMessageService {
 
     public void saveMessage(ContactMessage contactMessage){
         contactMessageRepository.save(contactMessage);
+    }
+
+    public List<ContactMessage>getAll(){
+        return contactMessageRepository.findAll();
     }
 
 
