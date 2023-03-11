@@ -10,6 +10,7 @@ public class VisionrentApplication {
 		SpringApplication.run(VisionrentApplication.class, args);
 		//codes from me
 		//last try
+
 	}
 
 }
