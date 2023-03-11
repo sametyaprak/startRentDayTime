@@ -1,6 +1,8 @@
 package com.visionrent.service;
 
 import com.visionrent.domain.ContactMessage;
+import com.visionrent.exception.ResourceNotFoundException;
+import com.visionrent.exception.message.ErrorMessage;
 import com.visionrent.repository.ContactMessageRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,7 +28,7 @@ public class ContactMessageService {
 
     public ContactMessage getContactMessage(Long id){
         ContactMessage contactMessage = contactMessageRepository.findById(id).orElseThrow(()->
-                new Exep)
+                new ResourceNotFoundException(ErrorMessage.RESOURCE_NOT_FOUND_MESSAGE,id));
     }
 
     public void deleteContactMessage(Long id){
