@@ -24,5 +24,14 @@ public class ContactMessageService {
         return contactMessageRepository.findAll();
     }
 
+    public ContactMessage getContactMessage(Long id){
+        ContactMessage contactMessage = contactMessageRepository.findById(id).orElseThrow(()->
+                new Exep)
+    }
+
+    public void deleteContactMessage(Long id){
+        ContactMessage contactMessage =
+    }
+
 
 }

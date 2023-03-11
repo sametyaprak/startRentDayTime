@@ -42,11 +42,19 @@ public class ContactMessageController {
 
     //TODO please read about SQL-INJECTION
 
+    //TODO IMPORTANT -> admin endpoint
     @GetMapping
     public ResponseEntity<List<ContactMessageDTO>>getAllContactMessage(){
         List<ContactMessage>contactMessageList = contactMessageService.getAll();
         List<ContactMessageDTO>contactMessageDTOList = contactMessageMapper.map(contactMessageList);
         return ResponseEntity.ok(contactMessageDTOList);
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<VRResponse> deleteContactMessage(@PathVariable Long id){
+
+
+        return null;
     }
 
 
