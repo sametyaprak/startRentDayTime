@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/contactmessage")
@@ -34,16 +35,21 @@ public class ContactMessageController {
          * Design PROBLEM -> this kind of service layer implementations should be done in service layer.
          */
         ContactMessage contactMessage = contactMessageMapper.contactMessageRequestToContactMessage(contactMessageRequest);
-
         contactMessageService.saveMessage(contactMessage);
-
         // as an example of HARD CODING
         //VRResponse response = new VRResponse("you made it",true);
-
         VRResponse response = new VRResponse(ResponseMessage.CONTACT_MESSAGE_SAVE_RESPONSE,true);
-
         return new ResponseEntity<>(response, HttpStatus.CREATED);
-
     }
+
+
+    public ResponseEntity<List<ContactMessage>>getAllContactMessage(){
+
+
+        return null;
+    }
+
+
+
 
 }
