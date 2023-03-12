@@ -56,7 +56,6 @@ public class ContactMessageController {
     public ResponseEntity<VRResponse> deleteContactMessage(@PathVariable Long id){
         contactMessageService.deleteContactMessage(id);
         VRResponse response = new VRResponse(ResponseMessage.CONTACT_MESSAGE_DELETE_RESPONSE,true);
-
         return ResponseEntity.ok(response);
     }
 
