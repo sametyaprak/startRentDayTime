@@ -52,12 +52,25 @@ public class ContactMessageController {
         //return ResponseEntity.ok(contactMessageMapper.map(contactMessageService.getAll()));
     }
 
+    //TODO IMPORTANT -> admin endpoint
     @DeleteMapping("{id}")
     public ResponseEntity<VRResponse> deleteContactMessage(@PathVariable Long id){
         contactMessageService.deleteContactMessage(id);
         VRResponse response = new VRResponse(ResponseMessage.CONTACT_MESSAGE_DELETE_RESPONSE,true);
         return ResponseEntity.ok(response);
     }
+
+    @GetMapping("/request")
+    public ResponseEntity<ContactMessageDTO>getRequestWithRequestParam(@RequestParam("id") Long id){
+
+        ContactMessage contactMessage = contactMessageService.getContactMessage(id);
+
+        ContactMessageDTO contactMessageDTO = contactMessageMapper.contactMessageToDTO(contactMessage);
+
+        return ResponseEntity.ok(contactMessageDTO);
+
+    }
+
 
 
 

@@ -26,6 +26,8 @@ public class ContactMessageService {
         return contactMessageRepository.findAll();
     }
 
+    // PROGRAM TO INTERFACE NOT TO IMPLEMENTATION
+    // https://medium.com/javarevisited/oop-good-practices-coding-to-the-interface-baea84fd60d3
     public ContactMessage getContactMessage(Long id){
         return contactMessageRepository.findById(id).orElseThrow(()->
                 new ResourceNotFoundException(String.format(ErrorMessage.RESOURCE_NOT_FOUND_MESSAGE,id)));
