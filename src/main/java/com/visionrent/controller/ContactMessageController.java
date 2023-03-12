@@ -60,15 +60,30 @@ public class ContactMessageController {
         return ResponseEntity.ok(response);
     }
 
+    //http://localhost:8080/contactmessage/request?id=2
     @GetMapping("/request")
     public ResponseEntity<ContactMessageDTO>getRequestWithRequestParam(@RequestParam("id") Long id){
-
         ContactMessage contactMessage = contactMessageService.getContactMessage(id);
-
         ContactMessageDTO contactMessageDTO = contactMessageMapper.contactMessageToDTO(contactMessage);
-
         return ResponseEntity.ok(contactMessageDTO);
+    }
 
+    //http://localhost:8080/contactmessage/1
+    @GetMapping("{id}")
+    public ResponseEntity<ContactMessageDTO>getRequestWithPath(@PathVariable Long id){
+        ContactMessage contactMessage = contactMessageService.getContactMessage(id);
+        ContactMessageDTO contactMessageDTO = contactMessageMapper.contactMessageToDTO(contactMessage);
+        return ResponseEntity.ok(contactMessageDTO);
+    }
+
+    //http://localhost:8080/contactmessage/4
+    @PutMapping("{id}")
+    public ResponseEntity<VRResponse>updateContactMessage(@PathVariable Long id
+            ,@Valid @RequestBody ContactMessageRequest contactMessageRequest){
+        ContactMessage contactMessage = contactMessageMapper.contactMessageRequestToContactMessage(contactMessageRequest);
+        contactMessageService.updateContactMessage(id,contactMessage);
+        VRResponse response = new VRResponse(ResponseMessage.CONTACT_MESSAGE_UPDATE_RESPONSE,true);
+        return ResponseEntity.ok(response);
     }
 
 

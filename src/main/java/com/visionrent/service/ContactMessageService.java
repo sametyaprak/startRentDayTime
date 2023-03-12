@@ -39,5 +39,14 @@ public class ContactMessageService {
         contactMessageRepository.delete(contactMessage);
     }
 
+    public void updateContactMessage(Long id,ContactMessage contactMessage){
+        ContactMessage foundContactMessage = getContactMessage(id);
+        foundContactMessage.setName(contactMessage.getName());
+        foundContactMessage.setSubject(contactMessage.getSubject());
+        foundContactMessage.setEmail(contactMessage.getEmail());
+        foundContactMessage.setBody(contactMessage.getBody());
+        contactMessageRepository.save(foundContactMessage);
+    }
+
 
 }
