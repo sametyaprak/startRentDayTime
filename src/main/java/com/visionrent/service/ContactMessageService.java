@@ -5,6 +5,8 @@ import com.visionrent.exception.ResourceNotFoundException;
 import com.visionrent.exception.message.ErrorMessage;
 import com.visionrent.repository.ContactMessageRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -47,6 +49,11 @@ public class ContactMessageService {
         foundContactMessage.setBody(contactMessage.getBody());
         contactMessageRepository.save(foundContactMessage);
     }
+
+    public Page<ContactMessage>getAll(Pageable pageable){
+        return contactMessageRepository.findAll(pageable);
+    }
+
 
 
 }

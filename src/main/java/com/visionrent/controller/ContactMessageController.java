@@ -10,6 +10,11 @@ import com.visionrent.mapper.ContactMessageMapper;
 import com.visionrent.service.ContactMessageService;
 import lombok.AllArgsConstructor;
 import org.apache.poi.ss.formula.functions.T;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -84,6 +89,29 @@ public class ContactMessageController {
         contactMessageService.updateContactMessage(id,contactMessage);
         VRResponse response = new VRResponse(ResponseMessage.CONTACT_MESSAGE_UPDATE_RESPONSE,true);
         return ResponseEntity.ok(response);
+    }
+
+
+    @GetMapping("/pages")
+    public ResponseEntity<Page<ContactMessageDTO>>getAllContactMessageWithPage(@RequestParam("page") int page,
+                                                                               @RequestParam("size") int size,
+                                                                               @RequestParam("sort") String prop,
+                                                                               @RequestParam(value = "direction",
+                                                                               required = false,
+                                                                               defaultValue = "DESC") Direction direction){
+
+        Pageable pageable = PageRequest.of(page,size,Sort.by(direction,prop));
+
+        Page<ContactMessage>contactMessagePage = contactMessageService.getAll(pageable);
+
+        Page<ContactMessageDTO>contactMessageDTOS = getPageDTO(contactMessagePage);
+
+        return ResponseEntity.ok(contactMessageDTOS);
+
+    }
+
+    public Page<ContactMessageDTO>getPageDTO(Page<ContactMessage>contactMessagePage){
+        return contactMessagePage.map(contactMessage -> contactMessageMapper.contactMessageToDTO(contactMessage));
     }
 
 
