@@ -91,7 +91,7 @@ public class ContactMessageController {
         return ResponseEntity.ok(response);
     }
 
-
+    //http://localhost:8080/contactmessage/pages?page=0&size=3&sort=id&direction=DESC
     @GetMapping("/pages")
     public ResponseEntity<Page<ContactMessageDTO>>getAllContactMessageWithPage(@RequestParam("page") int page,
                                                                                @RequestParam("size") int size,
@@ -99,18 +99,18 @@ public class ContactMessageController {
                                                                                @RequestParam(value = "direction",
                                                                                required = false,
                                                                                defaultValue = "DESC") Direction direction){
-
         Pageable pageable = PageRequest.of(page,size,Sort.by(direction,prop));
-
         Page<ContactMessage>contactMessagePage = contactMessageService.getAll(pageable);
-
         Page<ContactMessageDTO>contactMessageDTOS = getPageDTO(contactMessagePage);
-
         return ResponseEntity.ok(contactMessageDTOS);
 
     }
 
-    public Page<ContactMessageDTO>getPageDTO(Page<ContactMessage>contactMessagePage){
+    /**
+     * this implementation should exist in service layer.
+     * Controller layer is not suitable for this implementation.
+     */
+    private Page<ContactMessageDTO>getPageDTO(Page<ContactMessage>contactMessagePage){
         return contactMessagePage.map(contactMessage -> contactMessageMapper.contactMessageToDTO(contactMessage));
     }
 
